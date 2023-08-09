@@ -1,0 +1,19 @@
+{
+  "test data1": {
+    "campaign_name": "Automated campaign - alphanumeric",
+    "campaign_type": "Dynamic Verification",
+    "start_date":"08/02/2023",
+    "time_hr": "00",
+    "time_mn": "00",
+    "end_date": "08/01/2023",
+    "set_priority": "high",
+    "set_state": "Bihar",
+    "set_area": "State",
+    "area_state_name": "Bihar",
+    "call_center": "Bihar_1",
+    "script": "This is automated created campaign",
+    "script_lang": "BR - Bihar",
+    "question_type": "MultipleChoice",
+    "verify_campaign_name":"Automated campaign - alphanumeric"
+  }
+}
