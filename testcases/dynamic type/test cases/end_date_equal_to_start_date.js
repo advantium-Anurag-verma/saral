@@ -38,7 +38,7 @@ describe('dynamic type', function(){
         campaign.feedback_yes();
         campaign.priority(data.set_priority);
         campaign.statecallCenter();
-        campaign.karyakarta();
+        campaign.clickRadioButtonByText(data.radio_button_text);
         campaign.qcNotCompleted();
         campaign.notAttempted();
         campaign.verified();

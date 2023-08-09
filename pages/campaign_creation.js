@@ -30,12 +30,7 @@ let campaign = function(){
     let nationalcallCenter = element(by.xpath('//*[@id="call_center_choice"]/div/div/div/input[1]'));
     let statecallCenter = element(by.xpath('//*[@id="call_center_choice"]/div/div/div/input[2]'));
     let lokSabhacallCenter = element(by.xpath('//*[@id="call_center_choice"]/div/div/div/input[3]'));
-    //Callee Selection Select callees
-    let csv = element(by.id('callee_selection_csv'));
-    let karyakarta = element(by.id('callee_selection_filters'));
-    let primaryMember = element(by.id('callee_selection_primary_members'));
-    let keyVoter = element(by.id('callee_selection_beneficiary'));
-    let noData = element(by.id('callee_selection_no_data'));
+
     //Select type of entries
     let qcCompleted = element(by.id('campaign_with_qc_true'));
     let qcNotCompleted = element(by.id('campaign_with_qc_false'));
@@ -120,7 +115,6 @@ let campaign = function(){
     //state
     let state = element(by.xpath('//*[@id="state"]'));
     let area = element(by.id('location_type'));
-    // let areaStateName = element(by.xpath('//*[@onchange="onLocationValueDropdownChange(event)"]'));
     let callCenterManual = element(by.id('manual_cc_selection'));
     let callCenterAuto = element(by.cssContainingText('input', 'Auto'));
     let callCenterState = element(by.xpath('//*[@class="call-center-dropdown call-center-list-dropdown form-control"]'));
@@ -173,13 +167,6 @@ let campaign = function(){
 
     //verify campaign name and open campaign
     let id;
-
-
-    // this.get = function(url){
-    //     browser.waitForAngularEnabled(false); // Only use this if your application is not an Angular application
-    //     browser.get(url);
-    //     browser.wait(EC.urlIs(url), 5000); // Wait for the URL to match before proceeding
-    // };
 
     async function setUserName(user_name){
       await  userName.sendKeys(user_name);
@@ -254,21 +241,33 @@ let campaign = function(){
     this.lokSabhacallCenter = async function(){
         await  lokSabhacallCenter.click();
     };
-    this.csv = async function(){
-        await   csv.click();
+
+    this.is_enabled = async function(csv, karyakarta, primaryMember, keyVoter, noData) {
+        const elementsToCheck = [csv, karyakarta, primaryMember, keyVoter, noData];
+        const result = {
+            enabled: [],
+            disabled: []
+        };
+    
+        for (const ele of elementsToCheck) {
+            const isEnabled = await ele.isEnabled();
+            const text = await ele.element(by.xpath('//following-sibling::label')).getText();
+    
+            if (isEnabled) {
+                result.enabled.push(text);
+            } else {
+                result.disabled.push(text);
+            }
+        }
+    
+        return result;
     };
-    this.karyakarta = async function(){
-        await   karyakarta.click();
+
+    this.clickRadioButtonByText = async function(buttonText) {
+        let labelElement = element(by.xpath(`//label[text()='${buttonText}']/preceding-sibling::input`));
+        await labelElement.click();
     };
-    this.primaryMember = async function(){
-        await   primaryMember.click();
-    };
-    this.keyVoter = async function(){
-        await   keyVoter.click();
-    };
-    this.noData = async function(){
-        await   noData.click();
-    };
+
     this.qcCompleted = async function(){
         await   qcCompleted.click();
     };
@@ -643,10 +642,6 @@ let campaign = function(){
     submitButton();
     browser.sleep(3000);
     }
-
-
-   
-
 };
 
 
