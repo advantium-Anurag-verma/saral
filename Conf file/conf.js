@@ -11,7 +11,7 @@ exports.config = {
 
     // Spec patterns are relative to the current working directory when
   // protractor is called.
-  specs: ['../testcases/dynamic type/test cases/national_call_centers.js'],
+  specs: ['../testcases/pracharak form/test case/pracharak_form_fill.js'],
   ///////////////////////////////////////////////////////////////
 
   //////////////////////////////////////////////////////
