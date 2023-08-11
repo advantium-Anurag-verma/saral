@@ -9,7 +9,6 @@ let pracharak = function(){
     let submit = element(by.id('submit'));
     let left_panel = element(by.id('sidebar-icon'));
     let eminentManualDataUpload = element(by.linkText('Eminent Manual Data Upload'));
-    // const fileInput = element(by.css('input[type="file"]'));
     const inputFileElement = element(by.id('file'));
     let submitPracharakButton = element(by.xpath('//button[text()="Submit"]'));
     let logOut = element(by.xpath('//*[@id="navbarManagement"]/ul/li[2]/a'));
@@ -20,8 +19,8 @@ let pracharak = function(){
     let otpField = element(by.id('mat-input-1'));
 
     //pracharak form
-    let profilePic = element(by.xpath('//div[@class="image-border"]/img'));
-    let formType = element(by.xpath('//span[@class="mat-radio-container"]'));
+    const profilePic = element(by.id('file-input'));
+    let picPreviewClose = element(by.xpath('//button[text()="Close"]'));
 
 
     async function setUserName(user_name){
@@ -73,10 +72,14 @@ let pracharak = function(){
         await  otpField.sendKeys(otp);
     };
     this.setProfilePic = async function(profile_pic){
+        browser.executeScript('arguments[0].style.display = "block";', profilePic);
         await  profilePic.sendKeys(profile_pic);
+        await  picPreviewClose.click();
     };
     this.setFormType = async function(form_type){
-        await  formType.element(by.xpath("//input[@value='"+form_type+"']")).click();
+        let radioButton = element(by.xpath("//input[@value='"+form_type+"']"));
+        await browser.wait(EC.presenceOf(radioButton), 5000);
+        await browser.executeScript("arguments[0].click();", radioButton);
     };
 
     this.LoginCCDMS = function(){
