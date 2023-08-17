@@ -1,6 +1,23 @@
 {
     "number1": {
       "mobile_number": "8768764591",
-      "form_type":"Pracharak"
+      "form_type":"Pracharak",
+      "date_of_birth": "25/4/2000",
+      "category_name": "General",
+      "religion_type": "Buddhism",
+      "casteValue":"Kayashta",
+      "subCasteValue":"verma",
+      "home_state":"Bihar",
+      "home_town":"Narkatiaganj",
+      "landline_value":"06253242243",
+      "res_address_1":"shanti Nagar",
+      "res_address_2":"Ward no.1",
+      "res_pincode":"845455",
+      "off_address_1":"deendayal research institute",
+      "off_address_2":"jhandewalan",
+      "off_pincode":"110055",
+      "home_town_address_1":"indrapuram",
+      "home_town_2":"vaibhav khand",
+      "home_town_pincode":"201014"
     }
   }
